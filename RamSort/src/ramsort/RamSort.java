@@ -26,12 +26,47 @@ public class RamSort {
 //  12 points: In the main method, invoke all the methods you've implemented (described below) at least five times 
 //  each on different inputs, for testing purposes.  Write all the inputs and the results into the console.
 //  This is the "testing" portion of your code.
+
+    int[] test0 = {0,1,3,1,4,2};
+    int[] test0Out = new int[test0.length];
+    
+    int[] test1 = {5, 3, 10, 0, 4, 7, 8, 9, 2, 6};
+    int[] test1Out = new int[test1.length];
+    
+    System.out.println(Arrays.toString(test0));
+    countingSort(test0, test0Out, 4);
+    System.out.println(Arrays.toString(test0Out));
+    
+    System.out.println(Arrays.toString(test1));
+    countingSort(test1, test1Out, 10);
+    System.out.println(Arrays.toString(test1Out));
+
+    
     }
     
 //  24 points: Define a method named countingSort. Implement Counting Sort as in the slides/textbook. One parameter will
 // be the input array to sort. Another parameter will be a memory allocated array of the same length, for storing the 
 // output. The third parameter will be the largest single input value. You may write your code one-indexed or
 // zero-indexed, but be aware the pseudocode one-indexes the input and output while zero-indexing the auxiliary array C.
+    
+    public static void countingSort(int[] array, int[] out, int largest){
+        int[] countArr = new int[largest + 1];
+        for(int i : countArr){
+            countArr[i] = 0; //set all values in our count array to 0.
+        }
+        for(int i = 1; i < array.length  ; i++ ){
+            countArr[array[i]] ++;
+        }
+        for(int i = 1 ; i < countArr.length ; i++  ){
+            countArr[i] = countArr[i] + countArr[i - 1];
+        }
+        //System.out.println(Arrays.toString(countArr));
+        for(int i = array.length - 1; i > 0 ; i-- ){
+            out[countArr[array[i]]] = array[i];
+            countArr[array[i]] --;
+        }
+        
+    }
     
     
     
@@ -45,6 +80,10 @@ public class RamSort {
 //  to reuse the same partition method from homework 4, which you used for quicksort.  If your partition method is not 
 //  working properly, I strongly recommend you debug it and get it working correctly before moving on to the rest of 
 //  this assignment.
+    
+    public static void randomizedQuickSelect(int[] array, int lBound, int uBound, int orderStat){
+    
+    }
     
     
 //    
