@@ -81,10 +81,48 @@ public class RamSort {
 //  working properly, I strongly recommend you debug it and get it working correctly before moving on to the rest of 
 //  this assignment.
     
-    public static void randomizedQuickSelect(int[] array, int lBound, int uBound, int orderStat){
-    
+    public static int randomizedQuickSelect(int[] array, int lBound, int uBound, int orderStat){
+        int[] arrayCop = java.util.Arrays.copyOf(array, array.length);
+        if(lBound == uBound){
+            return arrayCop[lBound];
+        }
+        Random rndm = new Random(); // made a new random number generator
+        int ran = rndm.nextInt((uBound - lBound) + 1 ) + lBound; // this will be our random pivot choice
+        int holder = arrayCop[uBound];
+        arrayCop[uBound] = arrayCop[ran];
+        arrayCop[ran] = holder;
+        int q = partition(arrayCop, lBound, uBound);
+        int pivStat = q - lBound + 1; // the order statistic of the pivot
+        if(orderStat == pivStat){
+            return arrayCop[q];
+        }
+        if(orderStat < pivStat){
+            return randomizedQuickSelect(arrayCop , lBound , q - 1 , orderStat );
+        }
+        return randomizedQuickSelect(arrayCop , q + 1 , uBound , orderStat - pivStat);
+        
+        
     }
     
+    
+    
+    
+    private static int partition(int[] array, int start, int end){
+        int pivot = array[end];
+        int sb = start -1; // sb (small bucket) is a variable describing the largest inclusive index of the smaller bucket
+        for(int i = start; i <= end -1; i ++){
+            if(array[i] <= pivot){
+                sb ++;
+                int holder = array[sb]; // holder simply hold one of the values we are swapping so it is not destroyed.
+                array[sb] = array[i];
+                array[i] = holder;
+            }
+        }
+        int holder1 = array[sb + 1]; //holder 1 works the same as holder except for this swap
+        array[sb + 1] = array[end];
+        array[end] = holder1;
+        return sb + 1;
+    }
     
 //    
 //    10 points extra credit: Define a method named radixSort, implementing a base-10 Radix Sort as in the 
