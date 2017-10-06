@@ -28,19 +28,48 @@ public class RamSort {
 //  This is the "testing" portion of your code.
 
     int[] test0 = {0,1,3,1,4,2};
+    int[] test1 = {2, 3, 10, 0, 4, 7, 8, 9, 2, 6};
+    int[] test2 = {4, 9, 3, 5, 8, 10, 17, 0, 11};
+    int[] test3 = {15, 1, 20, 21, 7, 17, 2, 8, 14, 6};
+    int[] test4 = {15, 37, 1, 25, 8, 39, 18, 34, 33, 27, 2, 10, 35};
+    
     int[] test0Out = new int[test0.length];
-    
-    int[] test1 = {5, 3, 10, 0, 4, 7, 8, 9, 2, 6};
     int[] test1Out = new int[test1.length];
+    int[] test2Out = new int[test2.length];
+    int[] test3Out = new int[test3.length];
+    int[] test4Out = new int[test4.length];
     
-    System.out.println(Arrays.toString(test0));
+    System.out.println("/////------------------ COUNTING SORT TESTING ----------------------/////");
+    
+    System.out.println("Test0 original: " + Arrays.toString(test0));
     countingSort(test0, test0Out, 4);
-    System.out.println(Arrays.toString(test0Out));
-    
-    System.out.println(Arrays.toString(test1));
+    System.out.println("Test0 after countingSorted: " + Arrays.toString(test0Out));
+     
+    System.out.println("Test1 original: " + Arrays.toString(test1));
     countingSort(test1, test1Out, 10);
-    System.out.println(Arrays.toString(test1Out));
-
+    System.out.println("Test1 after countingSorted: " + Arrays.toString(test1Out));
+    
+    System.out.println("Test2 original: " + Arrays.toString(test2));
+    countingSort(test2, test2Out, 17);
+    System.out.println("Test2 after countingSorted: " + Arrays.toString(test2Out));
+    
+    System.out.println("Test3 original: " + Arrays.toString(test3));
+    countingSort(test3, test3Out, 21);
+    System.out.println("Test3 after countingSorted: " + Arrays.toString(test3Out));
+    
+    System.out.println("Test4 original: " + Arrays.toString(test4));
+    countingSort(test4, test4Out, 39);
+    System.out.println("Test4 after countingSorted: " + Arrays.toString(test4Out));
+    
+    System.out.println("/////------------------ END OF COUNTING SORT TESTING ----------------------/////");
+    
+    System.out.println("/////------------------ RANDOMIZED QUICK SELECT TESTING ----------------------/////");
+    
+    System.out.println("test0 randomizedQuickSelect on test0 for order statistic 2: " + randomizedQuickSelect(test0, 0 , 5 , 2));
+    System.out.println("test1 randomizedQuickSelect on test1 for order statistic 5: " + randomizedQuickSelect(test1, 0 , 9 , 5));
+    System.out.println("test2 randomizedQuickSelect on test2 for order statistic 5: " + randomizedQuickSelect(test2, 0 , 8 , 5));
+    System.out.println("test3 randomizedQuickSelect on test3 for order statistic 4: " + randomizedQuickSelect(test3, 0 , 8 , 4));
+    System.out.println("test4 randomizedQuickSelect on test4 for order statistic 6: " + randomizedQuickSelect(test4, 0 , 12 , 6));
     
     }
     
@@ -133,9 +162,18 @@ public class RamSort {
 //    A private helper method named getDigit to obtain and return the value of a single given base-10 digit's value from
 //    a given int value. For example, getDigit(1, 493) would return the value of the "1's place" in 493, which is 
 //    the number 3. You can make that helper method a purely math function, or instead make it with String methods.
-
-    
-    
+    /**
+     * 
+     * @param place describes the the digits place which we are looking for Must be 1 or a multiple of 10
+     * @param orgNum
+     * @return 
+     */
+//    public static int getDigit(int place, int orgNum){
+//        int digit = orgNum % (10^(place));
+//        digit = digit / ((place - 1) * 10);
+//        return digit;
+//    }
+//    
     
 //    A private helper method named countingSortOnDigit, which is a modified version of countingSort with an additional
 //    parameter indicating which base-10 digit is to be used for comparisons. (1 for rightmost digit, 2 for second 
