@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Xenia Zantello 
+ * Hw4 Ram sort for CSC 333
+ * Dr. Adam Whitley
+ * Finished - 10/5/1017
  */
 package ramsort;
 
@@ -77,7 +78,12 @@ public class RamSort {
 // be the input array to sort. Another parameter will be a memory allocated array of the same length, for storing the 
 // output. The third parameter will be the largest single input value. You may write your code one-indexed or
 // zero-indexed, but be aware the pseudocode one-indexes the input and output while zero-indexing the auxiliary array C.
-    
+    /**
+     * 
+     * @param array -The Array to be countingSorted
+     * @param out -The array which we will store the sorted array in.
+     * @param largest -The largest int value in the array
+     */
     public static void countingSort(int[] array, int[] out, int largest){
         int[] countArr = new int[largest + 1];
         for(int i : countArr){
@@ -109,7 +115,14 @@ public class RamSort {
 //  to reuse the same partition method from homework 4, which you used for quicksort.  If your partition method is not 
 //  working properly, I strongly recommend you debug it and get it working correctly before moving on to the rest of 
 //  this assignment.
-    
+    /**
+     * 
+     * @param array - the array we are quickselecting within.
+     * @param lBound - the lowest bound of our subproblem (0 at initial call)
+     * @param uBound - the upperbound of our subproblem (length-1 at initial call)
+     * @param orderStat - the order statistic for which we are searching
+     * @return - the int value of the requested order statistic
+     */
     public static int randomizedQuickSelect(int[] array, int lBound, int uBound, int orderStat){
         int[] arrayCop = java.util.Arrays.copyOf(array, array.length);
         if(lBound == uBound){
@@ -135,7 +148,13 @@ public class RamSort {
     
     
     
-    
+    /**
+     * 
+     * @param array describes the array with values in arbitrary order to be partitioned
+     * @param start describes the first index of the subproblem we are working on (0 in initial call)
+     * @param end describes the last index of the subproblem we are working on (array.length - 1 at initial call)
+     * @return an int value representing the index of our partition value which is placed precisely where it would remain in sorted order.
+     */
     private static int partition(int[] array, int start, int end){
         int pivot = array[end];
         int sb = start -1; // sb (small bucket) is a variable describing the largest inclusive index of the smaller bucket
